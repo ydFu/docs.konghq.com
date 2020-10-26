@@ -140,6 +140,14 @@ In the following steps, replace `<your-password>` with a secure password.
     ```
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
+
+    If you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+    and `cookie_samesite` properties as follows:
+
+    ```
+    $ echo '{"cookie_name":"portal_session","cookie_samesite":"off", "cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    ```
+
 3. Create secret:
     ```
     kubectl create secret generic kong-session-config -n kong --from-file=admin_gui_session_conf --from-file=portal_session_conf
@@ -156,6 +164,14 @@ In the following steps, replace `<your-password>` with a secure password.
     ```
     $ echo '{"cookie_name":"portal_session","cookie_samesite":"off","secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
     ```
+
+    If you have different subdomains for the `portal_api_url` and `portal_gui_host`, set the `cookie_domain`
+    and `cookie_samesite` properties as follows:
+
+    ```
+    $ echo '{"cookie_name":"portal_session","cookie_samesite":"off", "cookie_domain":"<.your_subdomain.com">,"secret":"<your-password>","cookie_secure":false,"storage":"kong"}' > portal_session_conf
+    ```
+
 3. Create secret:
     ```
     $ oc create secret generic kong-session-config -n kong --from-file=admin_gui_session_conf --from-file=portal_session_conf
@@ -164,10 +180,10 @@ In the following steps, replace `<your-password>` with a secure password.
 {% endnavtabs %}
 ## Step 7. Prepare Kong's configuration file
 
-1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment. 
+1. Create a `values.yaml` file for Helm based on the template in the [Kong charts repository](https://github.com/Kong/charts/blob/main/charts/kong/values.yaml). This file contains all the possible parameters for your Kong deployment.
 
-    You can also base your configuration on a sample Kong Enterprise `values.yaml` 
-    file. For example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml) 
+    You can also base your configuration on a sample Kong Enterprise `values.yaml`
+    file. For example, [this values file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml)
     enables most Kong Enterprise features.
 
 2. Minimally, for setting up Kong Enterprise on Kubernetes, you will need to set the following parameters:
