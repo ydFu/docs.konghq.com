@@ -16,6 +16,9 @@
       absolute_url: true
     - text: Version Support
       url: /support-policy
+    - text: Archived Documentation
+      url: /archived-docs
+      absolute_url: true
 
 - title: Deployment
   icon: /assets/images/icons/documentation/icn-deployment-color.svg
